@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { transfer, selectBalance } from "./transactionsSlice";
+import { transfer, deposit, withdrawal, selectBalance } from "./transactionsSlice";
 import "./transactions.scss";
 
 /**
@@ -31,7 +31,12 @@ export default function Transactions() {
       // the amount and the recipient.
       dispatch(transfer({ amount, recipient }));
     }
-    
+    if (action === "deposit") {
+      dispatch(deposit({ amount }));
+    }
+    if (action === "withdrawal") {
+      dispatch(withdrawal({ amount }));
+    }
   };
 
   return (
@@ -58,7 +63,7 @@ export default function Transactions() {
             <button default name="deposit">
               Deposit
             </button>
-            <button name="withdraw">Withdraw</button>
+            <button name="withdrawal">Withdraw</button>
           </div>
         </div>
         <div className="form-row">
